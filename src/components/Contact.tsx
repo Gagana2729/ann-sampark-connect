@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Building2, Users, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -131,9 +132,11 @@ const Contact = () => {
                       <p className="text-sm text-foreground/70 mb-3">
                         Register your organization to receive donations
                       </p>
-                      <Button variant="outline" size="sm">
-                        Register Now
-                      </Button>
+                      <Link to="/auth">
+                        <Button variant="outline" size="sm">
+                          Register Now
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </CardContent>
@@ -151,9 +154,11 @@ const Contact = () => {
                       <p className="text-sm text-foreground/70 mb-3">
                         Start making a difference by donating surplus resources
                       </p>
-                      <Button variant="outline" size="sm">
-                        Sign Up to Donate
-                      </Button>
+                      <Link to="/auth">
+                        <Button variant="outline" size="sm">
+                          Sign Up to Donate
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </CardContent>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Heart, BookOpen, Users } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -48,18 +49,24 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            <Button variant="glass" size="lg" className="text-lg px-8 py-6">
-              <Heart className="mr-2 h-5 w-5" />
-              Donate Food
-            </Button>
-            <Button variant="glass" size="lg" className="text-lg px-8 py-6">
-              <BookOpen className="mr-2 h-5 w-5" />
-              Donate Books
-            </Button>
-            <Button variant="glass" size="lg" className="text-lg px-8 py-6">
-              <Users className="mr-2 h-5 w-5" />
-              Join as NGO
-            </Button>
+            <Link to="/auth">
+              <Button variant="glass" size="lg" className="text-lg px-8 py-6">
+                <Heart className="mr-2 h-5 w-5" />
+                Donate Food
+              </Button>
+            </Link>
+            <Link to="/auth">
+              <Button variant="glass" size="lg" className="text-lg px-8 py-6">
+                <BookOpen className="mr-2 h-5 w-5" />
+                Donate Books
+              </Button>
+            </Link>
+            <Link to="/auth">
+              <Button variant="glass" size="lg" className="text-lg px-8 py-6">
+                <Users className="mr-2 h-5 w-5" />
+                Join as NGO
+              </Button>
+            </Link>
           </div>
 
           {/* Scroll Indicator */}
