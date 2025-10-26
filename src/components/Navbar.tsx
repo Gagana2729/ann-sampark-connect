@@ -52,9 +52,9 @@ const Navbar = () => {
               </a>
             ))}
             <Link to="/auth">
-              <Button variant="hero" size="sm">
-                Get Started
-              </Button>
+            <Button variant="hero" size="sm" onClick={() => window.location.href = '/auth'}>
+              Get Started
+            </Button>
             </Link>
           </div>
 
@@ -81,9 +81,9 @@ const Navbar = () => {
               </a>
             ))}
             <Link to="/auth" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button variant="hero" size="sm" className="w-full mt-4">
-                Get Started
-              </Button>
+            <Button variant="hero" size="sm" className="w-full mt-4" onClick={() => window.location.href = '/auth'}>
+              Get Started
+            </Button>
             </Link>
           </div>
         )}
