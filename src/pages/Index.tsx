@@ -1,33 +1,52 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Problem from "@/components/Problem";
-import Objectives from "@/components/Objectives";
-import Methodology from "@/components/Methodology";
-import BookBlock from "@/components/BookBlock";
-import Outcomes from "@/components/Outcomes";
-import Novelty from "@/components/Novelty";
-import Team from "@/components/Team";
-import Contact from "@/components/Contact";
-import ImpactDashboard from "@/components/ImpactDashboard";
-import Footer from "@/components/Footer";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import { Loader2 } from "lucide-react";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuthAndRedirect = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        navigate("/auth");
+        return;
+      }
+
+      const { data: roles } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .single();
+
+      if (roles) {
+        switch (roles.role) {
+          case "donor":
+            navigate("/donor");
+            break;
+          case "ngo":
+            navigate("/ngo");
+            break;
+          case "admin":
+            navigate("/admin");
+            break;
+          default:
+            navigate("/auth");
+        }
+      } else {
+        navigate("/auth");
+      }
+    };
+
+    checkAuthAndRedirect();
+  }, [navigate]);
+
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <About />
-      <Problem />
-      <Objectives />
-      <Methodology />
-      <BookBlock />
-      <Outcomes />
-      <Novelty />
-      <ImpactDashboard />
-      <Team />
-      <Contact />
-      <Footer />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-hero">
+      <Loader2 className="h-8 w-8 animate-spin text-primary" />
     </div>
   );
 };
